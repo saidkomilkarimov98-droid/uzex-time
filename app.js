@@ -32,7 +32,13 @@
     syncButton.disabled = true; status.textContent = 'UZEX vaqti bilan sinxronlanmoqda…';
     try {
       const response = await fetch('/api/time', { cache:'no-store' });
-      const data = await response.json();
+      const raw = await response.text();
+let data;
+try {
+  data = JSON.parse(raw);
+} catch {
+  throw new Error(raw.slice(0, 180));
+}
       if (!response.ok) throw new Error(data.error);
       offsetMs = data.offsetMs;
       status.textContent = `Sinxronlandi: tuzatish ${offsetMs >= 0 ? '+' : ''}${offsetMs.toFixed(1)} ms, RTT ${data.rttMs} ms`;
