@@ -33,6 +33,7 @@
     try {
       const response = await fetch('/api/time', { cache:'no-store' });
       const raw = await response.text();
+      const receivedAt = Date.now();
 let data;
 try {
   data = JSON.parse(raw);
