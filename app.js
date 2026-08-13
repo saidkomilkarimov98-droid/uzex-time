@@ -25,7 +25,7 @@
     const now = frozen ? frozenTimestamp : Date.now() + offsetMs + 99;
     render(now);
     const value = Math.round(now), second = Math.floor(value / 1000), ms = value % 1000;
-    if (!frozen && signalEnabled && ms >= 750 && second !== lastSignalSecond) { beep(); lastSignalSecond = second; }
+    if (!frozen && signalEnabled && ms >= 800 && second !== lastSignalSecond) { beep(); lastSignalSecond = second; }
     requestAnimationFrame(tick);
   };
   async function sync() {
