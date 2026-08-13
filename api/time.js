@@ -18,7 +18,8 @@ export default async function handler(request, response) {
       offsetMs: serverTime - ((startedAt + receivedAt) / 2),
       rttMs: receivedAt - startedAt
     });
-  } catch {
-    response.status(502).json({ error: 'UZEX Time bilan bog‘lanib bo‘lmadi. Keyinroq qayta urinib ko‘ring.' });
+  } } catch (error) {
+  console.error('UZEX time request failed:', error);
+  response.status(502).json({ error: `UZEX ulanish xatosi: ${error.message}` });
   }
 }
